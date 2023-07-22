@@ -1,9 +1,22 @@
+using Microsoft.EntityFrameworkCore;
+using QuoteVibes.CrossCutting.Settings;
+using QuoteVibes.IoC;
+using QuoteVibes.Persistence.Context;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 
 builder.Services.AddControllers();
-// Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
+
+var appConfig = builder.Configuration.Get<ConfigApp>();
+
+builder.Services.AddDbContext<QuoteVibesContext>(options =>
+    options.UseSqlServer(appConfig.ConnectionStrings.SQL));
+
+builder.Services.AddRepositories();
+builder.Services.AddServices();
+
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
