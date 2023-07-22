@@ -1,6 +1,7 @@
 using Microsoft.AspNetCore.Mvc;
 using QuoteVibes.Domain.Base;
 using QuoteVibes.Domain.Interface.Pensamento;
+using QuoteVibes.Domain.ViewModels.Pensamento;
 using QuoteVibes.Domain.ViewModels.Pensamento.Response;
 
 namespace QuoteVibes.Controllers
@@ -45,7 +46,7 @@ namespace QuoteVibes.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> PostThought(PensamentoModel model)
+        public async Task<IActionResult> PostThought(PensamentosInsertViewModel model)
         {
             var entidade = await _pensamentosRepository.AddAsync(model.ToEntity());
 
