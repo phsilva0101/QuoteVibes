@@ -73,5 +73,17 @@ namespace QuoteVibes.Controllers
             await _unitOfWork.CommitarTransacaoAsync();
             return NoContent();
         }
+
+        [HttpDelete("{id}")]
+        public async Task<IActionResult> DeleteThought(Guid id)
+        {
+
+            var sucesso = await _pensamentosRepository.DeleteAsync(id);
+            if (!sucesso)
+                return NotFound();
+
+            await _unitOfWork.CommitarTransacaoAsync();
+            return NoContent();
+        }
     }
 }
