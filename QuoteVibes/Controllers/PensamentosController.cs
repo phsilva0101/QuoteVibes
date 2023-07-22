@@ -64,7 +64,11 @@ namespace QuoteVibes.Controllers
             if (entidade == null)
                 return NotFound();
 
-            entidade = model.ToEntity();
+            entidade.Autor = model.Autor;
+            entidade.Conteudo = model.Conteudo;
+            entidade.Modelo = model.Modelo;
+            entidade.DataAtualizacao = DateTime.Now;
+
             _pensamentosRepository.Update(entidade);
             await _unitOfWork.CommitarTransacaoAsync();
             return NoContent();
