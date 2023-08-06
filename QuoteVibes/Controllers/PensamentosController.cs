@@ -2,6 +2,7 @@ using Microsoft.AspNetCore.Mvc;
 using QuoteVibes.Domain.Base;
 using QuoteVibes.Domain.Interface.Pensamento;
 using QuoteVibes.Domain.ViewModels.Pensamento;
+using QuoteVibes.Domain.ViewModels.Pensamento.Request;
 using QuoteVibes.Domain.ViewModels.Pensamento.Response;
 
 namespace QuoteVibes.Controllers
@@ -26,11 +27,11 @@ namespace QuoteVibes.Controllers
         }
 
         [HttpGet]
-        public async Task<IActionResult> GetThoughts()
+        public async Task<IActionResult> GetThoughts([FromQuery] PensamentoFilterQueryModel model, CancellationToken cancellationToken)
         {
-            var entidades = await _pensamentosRepository.GetAllAsync();
-            if (entidades != null && entidades.Any())
-                return Ok(entidades.ToMapModel());
+            var entidades = await _pensamentosRepository.ObterTodosAsync(model, cancellationToken);
+            if (entidades.models != null && entidades.models.Any())
+                return Ok(entidades.models);
 
             return Ok(new List<PensamentoModel>());
         }

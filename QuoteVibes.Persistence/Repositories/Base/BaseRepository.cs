@@ -7,7 +7,7 @@ namespace QuoteVibes.Persistence.Repositories.Base
     public class BaseRepository<TEntity, TKey> : IBaseRepository<TEntity, TKey> where TEntity : class where TKey : struct
     {
 
-        private readonly QuoteVibesContext _context;
+        protected readonly QuoteVibesContext _context;
         private readonly DbSet<TEntity> _dbSet;
 
         public BaseRepository(QuoteVibesContext context)

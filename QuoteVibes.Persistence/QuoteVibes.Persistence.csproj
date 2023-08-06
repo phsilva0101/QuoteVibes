@@ -18,6 +18,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\QuoteVibes.CrossCutting\QuoteVibes.CrossCutting.csproj" />
     <ProjectReference Include="..\QuoteVibes.Domain\QuoteVibes.Domain.csproj" />
   </ItemGroup>
 

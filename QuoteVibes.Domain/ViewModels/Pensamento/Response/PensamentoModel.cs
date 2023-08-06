@@ -30,6 +30,11 @@ namespace QuoteVibes.Domain.ViewModels.Pensamento.Response
             return entities.Select(ToMapModel);
         }
 
+        public static IEnumerable<PensamentoModel> ToMapModel(this IReadOnlyList<Pensamentos> entities)
+        {
+            return entities.Select(ToMapModel);
+        }
+
         public static Pensamentos ToEntity(this PensamentoModel entity)
         {
             return new Pensamentos
